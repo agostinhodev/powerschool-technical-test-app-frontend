@@ -1,4 +1,5 @@
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import Autocomplete from "@/components/Autocomplete";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -9,12 +10,8 @@ export default function Home() {
         </Text>
       </Box>
       <Box>
-        <Input
-          type="text"
-          placeholder="Begin entering the name of the country"
-          size="lg"
-          width="500px"
-        />
+        <Autocomplete />
+
         <Button colorScheme="blue" ml={4}>
           Search
         </Button>
