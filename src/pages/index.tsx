@@ -1,5 +1,5 @@
 import Autocomplete from "@/components/Autocomplete";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -11,10 +11,6 @@ export default function Home() {
       </Box>
       <Box>
         <Autocomplete />
-
-        <Button colorScheme="blue" ml={4}>
-          Search
-        </Button>
       </Box>
       <Box mt={10}>
         <Text fontSize="sm" color="gray.500">

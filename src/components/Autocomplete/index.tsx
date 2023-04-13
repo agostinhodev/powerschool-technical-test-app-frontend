@@ -67,6 +67,7 @@ export default function Autocomplete() {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          placeholder="Please enter the name of the country here..."
         />
         {filteredItems.length > 0 && (
           <List
