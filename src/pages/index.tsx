@@ -1,7 +1,30 @@
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Box, Button, Input, Text } from "@chakra-ui/react";
 
 export default function Home() {
-  return <></>;
+  return (
+    <Box textAlign="center" mt={20}>
+      <Box mb={10}>
+        <Text fontSize="4xl" fontWeight="bold">
+          Search countries
+        </Text>
+      </Box>
+      <Box>
+        <Input
+          type="text"
+          placeholder="Begin entering the name of the country"
+          size="lg"
+          width="500px"
+        />
+        <Button colorScheme="blue" ml={4}>
+          Search
+        </Button>
+      </Box>
+      <Box mt={10}>
+        <Text fontSize="sm" color="gray.500">
+          We offer access to a wide range of over 200 countries for you to
+          choose from.
+        </Text>
+      </Box>
+    </Box>
+  );
 }
