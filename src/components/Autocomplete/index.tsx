@@ -1,5 +1,13 @@
 import { Country } from "@/models/Country";
-import { Box, Flex, Input, List, ListItem } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Image,
+  Input,
+  List,
+  ListItem,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -84,8 +92,16 @@ export default function Autocomplete() {
                 width={"full"}
                 display={"flex"}
                 borderWidth={1}
+                cursor={"pointer"}
               >
-                {item.name}
+                <Image
+                  src={`https://flagcdn.com/32x24/${item.code.toLowerCase()}.png`}
+                  alt={item.name}
+                  boxSize="32spx"
+                />
+                <Text ml={2} fontWeight={600}>
+                  {item.name}
+                </Text>
               </ListItem>
             ))}
           </List>
