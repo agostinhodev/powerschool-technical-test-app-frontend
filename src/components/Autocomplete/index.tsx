@@ -13,7 +13,10 @@ export default function Autocomplete() {
     if (inputValue) {
       axios
         .get(`http://localhost:3000/autocomplete?name=${inputValue}`)
-        .then(response => setFilteredItems(response.data));
+        .then(response => setFilteredItems(response.data))
+        .catch(() => {
+          setFilteredItems([]);
+        });
     } else {
       setFilteredItems([]);
       setSelectedIndex(-1);
