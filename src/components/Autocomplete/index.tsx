@@ -1,27 +1,22 @@
-import { Country } from "@/models/Country";
-import {
-  Box,
-  Flex,
-  Image,
-  Input,
-  List,
-  ListItem,
-  Text,
-} from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
+import { Country } from '@/models/Country';
+import { Box, Flex, Image, Input, List, ListItem, Text } from '@chakra-ui/react';
+import axios from 'axios';
 
 export default function Autocomplete() {
   const [filteredItems, setFilteredItems] = useState<Country[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     if (inputValue) {
       axios
         .get(`http://localhost:3000/autocomplete?name=${inputValue}`)
-        .then((response) => setFilteredItems(response.data))
-        .catch((error) => console.log(error));
+        .then(response => setFilteredItems(response.data))
+        .catch(() => {
+          setFilteredItems([]);
+        });
     } else {
       setFilteredItems([]);
       setSelectedIndex(-1);
@@ -39,17 +34,13 @@ export default function Autocomplete() {
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "ArrowUp") {
+    if (event.key === 'ArrowUp') {
       event.preventDefault();
-      setSelectedIndex((prevIndex) =>
-        prevIndex <= 0 ? filteredItems.length - 1 : prevIndex - 1
-      );
-    } else if (event.key === "ArrowDown") {
+      setSelectedIndex(prevIndex => (prevIndex <= 0 ? filteredItems.length - 1 : prevIndex - 1));
+    } else if (event.key === 'ArrowDown') {
       event.preventDefault();
-      setSelectedIndex((prevIndex) =>
-        prevIndex === filteredItems.length - 1 ? 0 : prevIndex + 1
-      );
-    } else if (event.key === "Enter") {
+      setSelectedIndex(prevIndex => (prevIndex === filteredItems.length - 1 ? 0 : prevIndex + 1));
+    } else if (event.key === 'Enter') {
       event.preventDefault();
       if (selectedIndex !== -1) {
         setInputValue(filteredItems[selectedIndex].name);
@@ -75,25 +66,25 @@ export default function Autocomplete() {
             top="100%"
             left={0}
             zIndex={1}
-            backgroundColor={"white"}
+            backgroundColor={'white'}
             flex={1}
-            display={"flex"}
-            flexDirection={"column"}
-            width={"full"}
-            alignItems={"flex-start"}
+            display={'flex'}
+            flexDirection={'column'}
+            width={'full'}
+            alignItems={'flex-start'}
           >
             {filteredItems.map((item, index) => (
               <ListItem
                 key={item.code}
-                bg={selectedIndex === index ? "blue.50" : undefined}
+                bg={selectedIndex === index ? 'blue.50' : undefined}
                 onMouseOver={() => setSelectedIndex(index)}
                 onClick={() => handleListItemClick(item)}
                 px={2}
                 py={1}
-                width={"full"}
-                display={"flex"}
+                width={'full'}
+                display={'flex'}
                 borderWidth={1}
-                cursor={"pointer"}
+                cursor={'pointer'}
               >
                 <Image
                   src={`https://flagcdn.com/32x24/${item.code.toLowerCase()}.png`}
