@@ -1,5 +1,5 @@
-import Autocomplete from "@/components/Autocomplete";
-import { Box, Text } from "@chakra-ui/react";
+import Autocomplete from '@/components/Autocomplete';
+import { Box, Text } from '@chakra-ui/react';
 
 export default function Home() {
   return (
@@ -14,8 +14,7 @@ export default function Home() {
       </Box>
       <Box mt={10}>
         <Text fontSize="sm" color="gray.500">
-          We offer access to a wide range of over 200 countries for you to
-          choose from.
+          We offer access to a wide range of over 200 countries for you to choose from.
         </Text>
       </Box>
     </Box>
