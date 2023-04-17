@@ -20,6 +20,7 @@ WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
+ENV NODE_ENV production
 RUN yarn build
 RUN yarn next export
 
@@ -27,7 +28,6 @@ RUN yarn next export
 FROM base AS production
 WORKDIR /app
 
-ENV NODE_ENV production
 RUN yarn global add serve
 
 RUN addgroup --system --gid 1001 nodejs
