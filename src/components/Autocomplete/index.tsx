@@ -8,11 +8,12 @@ export default function Autocomplete() {
   const [filteredItems, setFilteredItems] = useState<Country[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [inputValue, setInputValue] = useState('');
+  const finalPort = process.env.NODE_ENV === 'production' ? 8080 : 3000;
 
   useEffect(() => {
     if (inputValue) {
       axios
-        .get(`http://localhost:3000/autocomplete?name=${inputValue}`)
+        .get(`http://localhost:${finalPort}/autocomplete?name=${inputValue}`)
         .then(response => setFilteredItems(response.data))
         .catch(() => {
           setFilteredItems([]);
@@ -21,7 +22,7 @@ export default function Autocomplete() {
       setFilteredItems([]);
       setSelectedIndex(-1);
     }
-  }, [inputValue]);
+  }, [finalPort, inputValue]);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
